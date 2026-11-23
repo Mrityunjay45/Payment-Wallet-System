@@ -3,11 +3,10 @@ FROM maven:3.9-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
+COPY settings.xml /root/.m2/settings.xml
 COPY . .
 
-# Retry transient Maven repository failures
-RUN chmod +x ./mvnw
-RUN ./mvnw clean package -DskipTests
+RUN mvn -B -ntp clean package -DskipTests
 
 FROM eclipse-temurin:17-jre
 
