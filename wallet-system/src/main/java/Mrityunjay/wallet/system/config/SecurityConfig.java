@@ -64,17 +64,16 @@ public CorsConfigurationSource corsConfigurationSource() {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
-            .requestMatchers(
-                "/users/register",
-                "/api/users/register",
-                "/api/auth/login",
-                "/error",
-                "/swagger-ui/**",
-                "/swagger-ui.html",
-                "/v3/api-docs/**"
+                .requestMatchers(
+                    "/api/users/register",
+                    "/api/auth/login",
+                    "/error",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/v3/api-docs/**"
             ).permitAll()
             .anyRequest().authenticated()
-        )
+            )
             .httpBasic(basic -> basic.disable())
             .formLogin(form -> form.disable())
             .addFilterBefore(
