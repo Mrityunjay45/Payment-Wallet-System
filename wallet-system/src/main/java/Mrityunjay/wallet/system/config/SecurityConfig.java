@@ -35,7 +35,7 @@ public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
 
     configuration.setAllowedOrigins(
-        List.of("http://localhost:5173")
+        List.of("http://localhost:5173","https://payment-wallet-system-delta.vercel.app/")
     );
 
     configuration.setAllowedMethods(
