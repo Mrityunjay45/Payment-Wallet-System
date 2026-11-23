@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Wallet, User, Mail, LockKeyhole, ArrowRight } from 'lucide-react'
+import { Wallet, User, Mail, LockKeyhole, Eye, EyeOff } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 
 export default function Register() {
   const { register } = useAuth()
   const navigate = useNavigate()
-
+  const [showPassword, setShowPassword] = useState(false)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -125,17 +125,29 @@ export default function Register() {
             <div>
               <label className="block text-sm font-medium mb-2">Password</label>
               <div className="relative">
-                <LockKeyhole className="absolute left-4 top-3.5 text-slate-400" size={19} />
+                <LockKeyhole
+                  className="absolute left-4 top-3.5 text-slate-400"
+                  size={19}
+                />
+
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   required
                   minLength={8}
                   value={form.password}
                   onChange={handleChange}
                   placeholder="Minimum 8 characters"
-                  className="w-full rounded-xl border border-slate-200 py-3 pl-12 pr-4 outline-none focus:border-brand focus:ring-2 focus:ring-green-100"
+                  className="w-full rounded-xl border border-slate-200 py-3 pl-12 pr-12 outline-none focus:border-brand focus:ring-2 focus:ring-green-100"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-3.5 text-slate-400 hover:text-slate-700"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={19} /> : <Eye size={19} />}
+                </button>
               </div>
             </div>
             <button
