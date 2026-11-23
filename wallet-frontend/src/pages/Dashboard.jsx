@@ -287,7 +287,7 @@ export default function Dashboard() {
     setError("");
 
     try {
-      const walletResponse = await api.get("/wallets/me");
+      const walletResponse = await api.get("/api/wallets/me");
       const walletData = walletResponse.data;
       setWallet(walletData);
 

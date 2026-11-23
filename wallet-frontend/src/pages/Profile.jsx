@@ -28,8 +28,8 @@ export default function Profile() {
     const loadProfile = async () => {
       try {
         const [profileResponse, walletResponse] = await Promise.all([
-          api.get("/users/me"),
-          api.get("/wallets/me"),
+          api.get("/api/users/me"),
+          api.get("/api/wallets/me"),
         ]);
 
         setProfile(profileResponse.data);
