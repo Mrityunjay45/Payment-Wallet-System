@@ -5,7 +5,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN mvn clean package -DskipTests
+# Retry transient Maven repository failures
+RUN mvn -B -ntp -Dmaven.wagon.http.retryHandler.count=5 clean package -DskipTests
 
 FROM eclipse-temurin:17-jre
 
