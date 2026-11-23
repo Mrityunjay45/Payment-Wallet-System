@@ -292,7 +292,7 @@ export default function Dashboard() {
       setWallet(walletData);
 
       const historyResponse = await api.get(
-        `/wallets/${walletData.walletId}/transactions`,
+        `/api/wallets/${walletData.walletId}/transactions`,
         { params: { page: requestedPage, size: 8 } }
       );
 
